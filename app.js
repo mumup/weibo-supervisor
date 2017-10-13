@@ -24,18 +24,18 @@ let addFeedUrl = `https://weibo.com/aj/filter/block?__rnd=${getUnxTime()}`
     if (!config.username && !config.password) {
         return console.log('用户或密码不能为空, 请编辑目录下的config.js ,填上相应参数');
     }
-    // try {
-    //     fs.statSync('cookies.txt')
-    //     console.log(`cookies文件存在，直接进行操作`);
-    // } catch(err) {
-    //     console.log(`正在进行登录操作...`);
-    //     await new weiboLogin(config.username, config.password).init();
-    // }
-    // cookies = fs.readFileSync('./cookies.txt');
+    try {
+        fs.statSync('cookies.txt')
+        console.log(`cookies文件存在，直接进行操作`);
+    } catch(err) {
+        console.log(`正在进行登录操作...`);
+        await new weiboLogin(config.username, config.password).init();
+    }
+    cookies = fs.readFileSync('./cookies.txt');
     let svList = JSON.parse(await getSupervisorList()).data
     console.log(`获取列表成功，共${svList.length}个`);
     console.log(`正在进行拉黑操作...`);
-    // addBlackListFn(svList)
+    addBlackListFn(svList)
     fs.writeFileSync('time.txt', parseInt(getUnxTime() / 1000));
 })()
 
