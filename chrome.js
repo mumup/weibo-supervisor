@@ -2,10 +2,10 @@ let timer = null
 let index = 0
 let successNums = 0
 let failNums = 0
-let block_url = 'http://weibo.com/aj/filter/block?ajwvr=6'
 let listUrl = 'https://lahei.xyz/api/v1/public/get-supervisor-list'
 let userList
 let last = localStorage.getItem('last_block') || 0
+let block_url = `${location.protocol}//weibo.com/aj/filter/block?ajwvr=6`
 
 function fetch(url, model) {
     return new Promise((resolve, reject) => {
